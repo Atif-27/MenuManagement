@@ -4,6 +4,8 @@ import ExpressResponse from "../utils/ExpressResponse";
 import ExpressError from "../utils/ExpressError";
 import Subcategory from "../models/subcategory.model";
 import { z } from "zod";
+import mongoose from "mongoose";
+
 // @ desc Create a new subcategory
 // @route POST /api/v1/subcategories
 const subcategoryVal = z.object({
@@ -94,9 +96,12 @@ export const getSubcategoriesByCategory = asyncWrapper(
 // @route GET /api/v1/subcategories/:id
 export const getSubcategory = asyncWrapper(
   async (req: Request, res: Response) => {
-    const subcategory = await Subcategory.findOne({
-      $or: [{ _id: req.params.id }, { name: req.params.id }],
-    });
+    // Check if the id is a valid ObjectId or a name
+    const isId = mongoose.Types.ObjectId.isValid(req.params.id);
+    let query;
+    if (isId) query = { _id: req.params.id };
+    else query = { name: req.params.id };
+    const subcategory = await Subcategory.findOne(query);
     if (!subcategory) {
       throw new ExpressError(404, "Subcategory not found.");
     }

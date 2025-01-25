@@ -4,6 +4,7 @@ import ExpressResponse from "../utils/ExpressResponse";
 import ExpressError from "../utils/ExpressError";
 import Category from "../models/category.model";
 import { z } from "zod";
+import mongoose from "mongoose";
 
 const categoryVal = z.object({
   name: z.string().min(3).max(50),
@@ -56,9 +57,12 @@ export const getAllCategories = asyncWrapper(
 // @route GET /api/v1/categories/:id
 export const getCategoryByIdOrName = asyncWrapper(
   async (req: Request, res: Response) => {
-    const category = await Category.findOne({
-      $or: [{ _id: req.params.id }, { name: req.params.id }],
-    });
+    // Check if the id is a valid ObjectId or a name
+    const isId = mongoose.Types.ObjectId.isValid(req.params.id);
+    let query;
+    if (isId) query = { _id: req.params.id };
+    else query = { name: req.params.id };
+    const category = await Category.findOne(query);
     if (!category) {
       throw new ExpressError(404, "Category not found.");
     }
