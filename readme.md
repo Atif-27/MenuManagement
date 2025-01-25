@@ -45,7 +45,7 @@ View Link- [Link](https://www.postman.com/universal-meadow-613074/menumanagement
 Invite link- [Link](https://app.getpostman.com/join-team?invite_code=59561c5c468aa0b9aca29f31836a7e9a9897b8599300b5cd9d928663d27622f2&target_code=f2a8695391a3261c86acd14f6eee8ce6)
 7. Imp Note - Select the New environment mode otherwise routes wont be working
    ![alt text](assets/image.png)
-   ![image](https://github.com/Atif-27/Menu_Management/assets/116288316/e8619ec4-99cb-444d-b9f1-4f30923ae02d)
+
 
 8. Paste the URL in initial and current value of the environment in case of error
     ```bash
