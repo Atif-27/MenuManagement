@@ -5,7 +5,7 @@ This Node.js backend server manages menus divided into categories, subcategories
 ![alt text](assets/image2.png)
 
 
-[Loom Video]()
+[Loom Video](https://www.loom.com/share/2b9ff1e1d1604a358e4c98c7a291c4ba?sid=7e7c399c-8caa-49f1-ace4-39060503137f)
 
 ## Setup
 
