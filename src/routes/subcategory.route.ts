@@ -5,7 +5,7 @@ import {
   getSubcategoriesByCategory,
   getSubcategory,
   updateSubcategory,
-} from "../controllers/subcategory.controller.js";
+} from "../controllers/subcategory.controller";
 const router = express.Router();
 router.post("/", createSubcategory);
 router.get("/", getAllSubcategories);

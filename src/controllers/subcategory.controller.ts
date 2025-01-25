@@ -1,7 +1,7 @@
 import asyncWrapper from "../utils/AsyncWrapper";
 import { Request, Response, NextFunction } from "express";
-import ExpressResponse from "../utils/ExpressResponse.js";
-import ExpressError from "../utils/ExpressError.js";
+import ExpressResponse from "../utils/ExpressResponse";
+import ExpressError from "../utils/ExpressError";
 import Subcategory from "../models/subcategory.model";
 import { z } from "zod";
 // @ desc Create a new subcategory

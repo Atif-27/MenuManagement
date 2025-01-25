@@ -1,8 +1,8 @@
 import asyncWrapper from "../utils/AsyncWrapper";
-import ExpressResponse from "../utils/ExpressResponse.js";
+import ExpressResponse from "../utils/ExpressResponse";
 import { Request, Response, NextFunction } from "express";
-import ExpressError from "../utils/ExpressError.js";
-import Item from "../models/item.model.js";
+import ExpressError from "../utils/ExpressError";
+import Item from "../models/item.model";
 import { z } from "zod";
 // @ desc Create a new item
 // @route POST /api/v1/items
@@ -58,7 +58,7 @@ export const getAllItems = asyncWrapper(async (req: Request, res: Response) => {
 });
 // @ desc Get all items under a category
 // @route GET /api/v1/items/category/:id
-export const getItemsByCategory = asyncWrapper(
+export const getItemsByCategoryId = asyncWrapper(
   async (req: Request, res: Response) => {
     const items = await Item.find({
       onModel: "Category",
@@ -77,7 +77,7 @@ export const getItemsByCategory = asyncWrapper(
 );
 // @ desc Get all items under a subcategory
 // @route GET /api/v1/items/subcategory/:id
-export const getItemsBySubcategory = asyncWrapper(
+export const getItemsBySubcategoryId = asyncWrapper(
   async (req: Request, res: Response) => {
     const items = await Item.find({
       onModel: "Subcategory",

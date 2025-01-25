@@ -1,8 +1,8 @@
 import asyncWrapper from "../utils/AsyncWrapper";
 import { Request, Response } from "express";
-import ExpressResponse from "../utils/ExpressResponse.js";
-import ExpressError from "../utils/ExpressError.js";
-import Category from "../models/category.model.js";
+import ExpressResponse from "../utils/ExpressResponse";
+import ExpressError from "../utils/ExpressError";
+import Category from "../models/category.model";
 import { z } from "zod";
 
 const categoryVal = z.object({
