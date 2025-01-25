@@ -7,7 +7,7 @@ import { z } from "zod";
 
 const categoryVal = z.object({
   name: z.string().min(3).max(50),
-  image: z.string().url(),
+  image: z.string(),
   description: z.string().min(10),
   taxApplicability: z.boolean(),
   tax: z.number(),
@@ -54,22 +54,24 @@ export const getAllCategories = asyncWrapper(
 );
 // @ desc Get single category by id or name
 // @route GET /api/v1/categories/:id
-export const getCategory = asyncWrapper(async (req: Request, res: Response) => {
-  const category = await Category.findOne({
-    $or: [{ _id: req.params.id }, { name: req.params.id }],
-  });
-  if (!category) {
-    throw new ExpressError(404, "Category not found.");
+export const getCategoryByIdOrName = asyncWrapper(
+  async (req: Request, res: Response) => {
+    const category = await Category.findOne({
+      $or: [{ _id: req.params.id }, { name: req.params.id }],
+    });
+    if (!category) {
+      throw new ExpressError(404, "Category not found.");
+    }
+    res
+      .status(200)
+      .json(new ExpressResponse(200, "Category found successfully", category));
   }
-  res
-    .status(200)
-    .json(new ExpressResponse(200, "Category found successfully", category));
-});
+);
 // @ desc Update a category by id
 // @route PUT /api/v1/categories/:id
 const updateCategoryVal = z.object({
   name: z.string().min(3).max(50).optional(),
-  image: z.string().url().optional(),
+  image: z.string().optional(),
   description: z.string().min(10).optional(),
   taxApplicability: z.boolean().optional(),
   tax: z.number().optional(),
