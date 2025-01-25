@@ -8,7 +8,7 @@ import { z } from "zod";
 // @route POST /api/v1/items
 const itemVal = z.object({
   name: z.string(),
-  image: z.string().url(),
+  image: z.string(),
   description: z.string(),
   taxApplicability: z.boolean(),
   tax: z.number(),
@@ -111,7 +111,7 @@ export const getItem = asyncWrapper(async (req: Request, res: Response) => {
 // @route PUT /api/v1/items/:id
 const updateItemVal = z.object({
   name: z.string().optional(),
-  image: z.string().url().optional(),
+  image: z.string().optional(),
   description: z.string().optional(),
   taxApplicability: z.boolean().optional(),
   tax: z.number().optional(),

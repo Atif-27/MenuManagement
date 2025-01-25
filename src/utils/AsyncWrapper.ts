@@ -10,6 +10,11 @@ export default function asyncWrapper(func: AsyncFunction) {
     try {
       await func(req, res, next);
     } catch (error) {
+      if ((error as any).code === 11000) {
+        const key = Object.keys((error as any).keyValue)[0];
+        (error as any).message = key + " already exists";
+        (error as any).statusCode = 400;
+      }
       next(error);
     }
   };
