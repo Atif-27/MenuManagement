@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
+
 const SubcategorySchema = new Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
+    minlength: 3,
+    maxlength: 50,
   },
   image: {
     type: String,
@@ -12,6 +16,7 @@ const SubcategorySchema = new Schema({
   description: {
     type: String,
     required: true,
+    minlength: 10,
   },
   taxApplicability: {
     type: Boolean,
@@ -26,5 +31,6 @@ const SubcategorySchema = new Schema({
     ref: "Category",
   },
 });
+
 const Subcategory = mongoose.model("Subcategory", SubcategorySchema);
 export default Subcategory;
